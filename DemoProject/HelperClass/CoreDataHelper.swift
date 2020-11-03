@@ -4,10 +4,23 @@
 //
 //  Created by Niroj Thapa on 11/3/20.
 //
-
 import Foundation
 import CoreData
 import UIKit
+extension Date {
+    static func dateFromISOString(dateStr: String) -> Date? {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [
+            .withInternetDateTime,
+            .withDashSeparatorInDate,
+            .withColonSeparatorInTime,
+            .withColonSeparatorInTimeZone,
+            .withFractionalSeconds,
+            .withTimeZone
+        ]
+        return formatter.date(from: dateStr)
+    }
+}
 class CoreDataHelper {
     var delegate: AppDelegate!
     var context: NSManagedObjectContext!
@@ -32,52 +45,54 @@ class CoreDataHelper {
         catch (let error) {
             fatalError("Error saving to core data \(error.localizedDescription)")
         }
-        
     }
-    
     func saveItemsToPurchase(purchaseId:Int,product_item_id:Int,transient_identifier:String, active_flag:Bool) -> Bool{
-            let fetchPurchase = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase_orders")
-            fetchPurchase.predicate = NSPredicate(format: "id = %@","\(purchaseId)")
-            do{
-                let fetch = try context.fetch(fetchPurchase) as! [Purchase_orders]
-                guard fetch.count > 0 else {
-                    fatalError("Not found purchase record")
-                }
-                let existingOrder = fetch.first!
-                let ItemOrdersEntity = NSEntityDescription.entity(forEntityName: "Items", in: context)
-                let newItem = NSManagedObject(entity: ItemOrdersEntity!, insertInto: context) as! Items
-                newItem.product_item_id = Int64(product_item_id)
-                newItem.transient_identifier = transient_identifier
-                newItem.active_flag = active_flag
-                do {
-                    if let storedItems = existingOrder.items as? Set<Items> {
-                        if let existingItem = storedItems.first(where: {$0.product_item_id == newItem.product_item_id}) {
-                            // edit existing record data
-                            existingItem.active_flag = active_flag
-                            existingItem.transient_identifier = transient_identifier
-                        }
-                        else {
-                            // Order has items but not with this item id so direct save
-                            existingOrder.addToItems(newItem)
-                        }
+        let fetchPurchase = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase_orders")
+        fetchPurchase.predicate = NSPredicate(format: "id = %@","\(purchaseId)")
+        do{
+            let fetch = try context.fetch(fetchPurchase) as! [Purchase_orders]
+            guard fetch.count > 0 else {
+                fatalError("Not found purchase record")
+            }
+            let existingOrder = fetch.first!
+            let ItemOrdersEntity = NSEntityDescription.entity(forEntityName: "Items", in: context)
+            let newItem = NSManagedObject(entity: ItemOrdersEntity!, insertInto: context) as! Items
+            newItem.product_item_id = Int64(product_item_id)
+            newItem.transient_identifier = transient_identifier
+            newItem.active_flag = active_flag
+            do {
+                if let storedItems = existingOrder.items as? Set<Items> {
+                    if let existingItem = storedItems.first(where: {$0.product_item_id == newItem.product_item_id}) {
+                        // edit existing record data
+                        existingItem.active_flag = active_flag
+                        existingItem.transient_identifier = transient_identifier
                     }
                     else {
-                        // Order has no items so direct save
+                        // Order has items but not with this item id so direct save
                         existingOrder.addToItems(newItem)
                     }
-                    try context.save()
-                    return true
                 }
-                catch (let error) {
-                    fatalError("Error saving to core data \(error.localizedDescription)")
+                else {
+                    // Order has no items so direct save
+                    existingOrder.addToItems(newItem)
                 }
-            }catch{
-                print("error")
+                try context.save()
+                return true
             }
-            return true
+            catch (let error) {
+                fatalError("Error saving to core data \(error.localizedDescription)")
+            }
+        }catch{
+            print("error")
         }
-    
-    func storeCDPurchaseOrderRecord(model: Response) -> Bool {
+        return true
+    }
+    func trySaveAllPurchaseOrdersToLocal(models: [Response]) {
+        for model in models {
+            self.storeCDPurchaseOrderRecord(model: model)
+        }
+    }
+    private func directInsertCDPurchaseOrderRecord(model: Response) {
         let purchaseOrdersEntity = NSEntityDescription.entity(forEntityName: "Purchase_orders", in: context)
         let newOrder = NSManagedObject(entity: purchaseOrdersEntity!, insertInto: context) as! Purchase_orders
         newOrder.id = Int16(model.id!)
@@ -92,7 +107,6 @@ class CoreDataHelper {
         newOrder.approval_status = Int16(model.approval_status!)
         newOrder.preferred_delivery_date = model.preferred_delivery_date!
         newOrder.delivery_note = model.delivery_note!
-        
         if let respItems = model.items {
             let itemsEntity = NSEntityDescription.entity(forEntityName: "Items", in: context)
             for respItem in respItems {
@@ -114,10 +128,7 @@ class CoreDataHelper {
                 newInvoice.last_updated = String(respInv.last_updated!)
                 newInvoice.last_updated_user_entity_id = Int32(respInv.last_updated_user_entity_id!)
                 newInvoice.invoice_number = String(respInv.invoice_number!)
-                
-                
                 if let invReceipts = respInv.receipts{
-                    
                     let recpEntity = NSEntityDescription.entity(forEntityName: "Receipts", in: context)
                     for respRecpit in invReceipts {
                         let newRecpit = NSManagedObject(entity: recpEntity!, insertInto: context) as! Receipts
@@ -125,26 +136,43 @@ class CoreDataHelper {
                         newRecpit.transient_identifier = String(respInv.transient_identifier!)
                         newRecpit.last_updated = String(respInv.last_updated!)
                         newInvoice.addToRecipts(newRecpit)
-                        
                     }
-                    
                 }
                 newOrder.addToInvoice(newInvoice)
-                
-                
             }
         }
-        
         do {
             try context.save()
-            return true
         }
         catch (let error) {
             fatalError("Error saving to core data \(error.localizedDescription)")
         }
     }
-    
-    
+    func storeCDPurchaseOrderRecord(model: Response) {
+        // Check before adding new
+        let fetchPurchase = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase_orders")
+        fetchPurchase.predicate = NSPredicate(format: "id = %@","\(model.id!)")
+        do {
+            let storedPurchase = try context.fetch(fetchPurchase) as! [Purchase_orders]
+            guard storedPurchase.count > 0 else {
+                // Not found record so direct add
+                self.directInsertCDPurchaseOrderRecord(model: model)
+                return
+            }
+            let existingPurchase = storedPurchase.first!
+            // Now before updating the record, check last updated
+            let storedLastUpdatedDate = Date.dateFromISOString(dateStr: existingPurchase.last_updated!)!
+            let requestedObjectDate = Date.dateFromISOString(dateStr: model.last_updated!)!
+            if requestedObjectDate > storedLastUpdatedDate {
+                context.delete(existingPurchase)
+                try context.save()
+                self.directInsertCDPurchaseOrderRecord(model: model)
+            }
+        }
+        catch (let error) {
+            fatalError(error.localizedDescription)
+        }
+    }
     func getCDPurchaseOrderRecord() -> [Response]? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase_orders")
         request.returnsObjectsAsFaults = false
