@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,13 +14,11 @@
 		3757DCBC255126F5004367D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3757DCBA255126F5004367D2 /* LaunchScreen.storyboard */; };
 		3757DCC7255126F5004367D2 /* DemoProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCC6255126F5004367D2 /* DemoProjectTests.swift */; };
 		3757DCD2255126F6004367D2 /* DemoProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCD1255126F6004367D2 /* DemoProjectUITests.swift */; };
-		3757DCEC25512726004367D2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCE225512725004367D2 /* CoreDataManager.swift */; };
 		3757DCED25512726004367D2 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCE425512725004367D2 /* DetailTableViewCell.swift */; };
 		3757DCEE25512726004367D2 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3757DCE525512725004367D2 /* DetailTableViewCell.xib */; };
 		3757DCEF25512726004367D2 /* HomePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3757DCE625512725004367D2 /* HomePageTableViewCell.xib */; };
 		3757DCF025512726004367D2 /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCE725512726004367D2 /* HomePageTableViewCell.swift */; };
 		3757DCF125512726004367D2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCE925512726004367D2 /* Constant.swift */; };
-		3757DCF225512726004367D2 /* CoreDataManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCEA25512726004367D2 /* CoreDataManage.swift */; };
 		3757DCF325512726004367D2 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCEB25512726004367D2 /* DatabaseHelper.swift */; };
 		3757DCF925512760004367D2 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCF825512760004367D2 /* Response.swift */; };
 		3757DD0225512772004367D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DCFE25512772004367D2 /* ViewController.swift */; };
@@ -28,6 +26,7 @@
 		3757DD0425512772004367D2 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DD0025512772004367D2 /* PopupViewController.swift */; };
 		3757DD0525512772004367D2 /* AddPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757DD0125512772004367D2 /* AddPurchaseViewController.swift */; };
 		3757DD0A2551277B004367D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3757DD092551277B004367D2 /* Main.storyboard */; };
+		375ACE1F25513656005FF446 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375ACE1E25513656005FF446 /* CoreDataHelper.swift */; };
 		4CDB61593278FA468EB0728F /* Pods_DemoProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C326E19A640F2B0EEB5D20D /* Pods_DemoProjectTests.framework */; };
 		59485FA904647340AA38E830 /* Pods_DemoProject_DemoProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0EA70BEA9D62DCE71CF658 /* Pods_DemoProject_DemoProjectUITests.framework */; };
 		65412EB91EB789697E2A7535 /* Pods_DemoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6281ADE22C80D33BDBB08FE /* Pods_DemoProject.framework */; };
@@ -66,13 +65,11 @@
 		3757DCCD255126F5004367D2 /* DemoProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3757DCD1255126F6004367D2 /* DemoProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoProjectUITests.swift; sourceTree = "<group>"; };
 		3757DCD3255126F6004367D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3757DCE225512725004367D2 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3757DCE425512725004367D2 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		3757DCE525512725004367D2 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		3757DCE625512725004367D2 /* HomePageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageTableViewCell.xib; sourceTree = "<group>"; };
 		3757DCE725512726004367D2 /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = "<group>"; };
 		3757DCE925512726004367D2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		3757DCEA25512726004367D2 /* CoreDataManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManage.swift; sourceTree = "<group>"; };
 		3757DCEB25512726004367D2 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		3757DCF825512760004367D2 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		3757DCFE25512772004367D2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +77,7 @@
 		3757DD0025512772004367D2 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		3757DD0125512772004367D2 /* AddPurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPurchaseViewController.swift; sourceTree = "<group>"; };
 		3757DD092551277B004367D2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		375ACE1E25513656005FF446 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		5F0EA70BEA9D62DCE71CF658 /* Pods_DemoProject_DemoProjectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoProject_DemoProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		661BBB89A46E3738631E20C4 /* Pods-DemoProject-DemoProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoProject-DemoProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-DemoProject-DemoProjectUITests/Pods-DemoProject-DemoProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6719D22D5735650E301E9CE6 /* Pods-DemoProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-DemoProjectTests/Pods-DemoProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				3757DCF725512760004367D2 /* Model */,
-				3757DCE225512725004367D2 /* CoreDataManager.swift */,
 				3757DCE325512725004367D2 /* CustomViews */,
 				3757DCE825512726004367D2 /* HelperClass */,
 				3757DCAC255126F1004367D2 /* AppDelegate.swift */,
@@ -191,8 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				3757DCE925512726004367D2 /* Constant.swift */,
-				3757DCEA25512726004367D2 /* CoreDataManage.swift */,
 				3757DCEB25512726004367D2 /* DatabaseHelper.swift */,
+				375ACE1E25513656005FF446 /* CoreDataHelper.swift */,
 			);
 			path = HelperClass;
 			sourceTree = "<group>";
@@ -226,7 +223,6 @@
 				6719D22D5735650E301E9CE6 /* Pods-DemoProjectTests.debug.xcconfig */,
 				7E59D5C355029351133D8202 /* Pods-DemoProjectTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -481,7 +477,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3757DD0325512772004367D2 /* ProductViewController.swift in Sources */,
-				3757DCF225512726004367D2 /* CoreDataManage.swift in Sources */,
 				3757DCED25512726004367D2 /* DetailTableViewCell.swift in Sources */,
 				3757DCF025512726004367D2 /* HomePageTableViewCell.swift in Sources */,
 				3757DCB7255126F1004367D2 /* DemoProject.xcdatamodeld in Sources */,
@@ -489,8 +484,8 @@
 				3757DD0225512772004367D2 /* ViewController.swift in Sources */,
 				3757DCF325512726004367D2 /* DatabaseHelper.swift in Sources */,
 				3757DCF925512760004367D2 /* Response.swift in Sources */,
+				375ACE1F25513656005FF446 /* CoreDataHelper.swift in Sources */,
 				3757DCAD255126F1004367D2 /* AppDelegate.swift in Sources */,
-				3757DCEC25512726004367D2 /* CoreDataManager.swift in Sources */,
 				3757DD0525512772004367D2 /* AddPurchaseViewController.swift in Sources */,
 				3757DCAF255126F1004367D2 /* SceneDelegate.swift in Sources */,
 				3757DD0425512772004367D2 /* PopupViewController.swift in Sources */,
