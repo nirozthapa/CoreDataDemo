@@ -1,0 +1,16 @@
+PODS:
+  - FloatingButtonPOP-swift (1.0.0)
+
+DEPENDENCIES:
+  - FloatingButtonPOP-swift
+
+SPEC REPOS:
+  trunk:
+    - FloatingButtonPOP-swift
+
+SPEC CHECKSUMS:
+  FloatingButtonPOP-swift: 406bc011ed894f1c5f2b59a679ca0fad2d2452db
+
+PODFILE CHECKSUM: 8f72ecd83cbfd2c865418b481f73454218ffb54e
+
+COCOAPODS: 1.8.4
