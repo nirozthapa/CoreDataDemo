@@ -35,24 +35,36 @@ class CoreDataHelper {
         
     }
     
-    
     func saveItemsToPurchase(purchaseId:Int,product_item_id:Int,transient_identifier:String, active_flag:Bool) -> Bool{
-        let purchaseOrdersEntity = NSEntityDescription.entity(forEntityName: "Purchase_orders", in: context)
-        let newOrder = NSManagedObject(entity: purchaseOrdersEntity!, insertInto: context) as! Purchase_orders
-        let fetchPurchase = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase_orders")
-        fetchPurchase.predicate = NSPredicate(format: "id = %@","\(purchaseId)")
-        do{
-            let fetch = try context.fetch(fetchPurchase)
+            let fetchPurchase = NSFetchRequest<NSFetchRequestResult>(entityName: "Purchase_orders")
+            fetchPurchase.predicate = NSPredicate(format: "id = %@","\(purchaseId)")
             do{
-               
+                let fetch = try context.fetch(fetchPurchase) as! [Purchase_orders]
+                guard fetch.count > 0 else {
+                    fatalError("Not found purchase record")
+                }
+                let existingOrder = fetch.first!
                 let ItemOrdersEntity = NSEntityDescription.entity(forEntityName: "Items", in: context)
                 let newItem = NSManagedObject(entity: ItemOrdersEntity!, insertInto: context) as! Items
                 newItem.product_item_id = Int64(product_item_id)
                 newItem.transient_identifier = transient_identifier
                 newItem.active_flag = active_flag
                 do {
-                    
-                    
+                    if let storedItems = existingOrder.items as? Set<Items> {
+                        if let existingItem = storedItems.first(where: {$0.product_item_id == newItem.product_item_id}) {
+                            // edit existing record data
+                            existingItem.active_flag = active_flag
+                            existingItem.transient_identifier = transient_identifier
+                        }
+                        else {
+                            // Order has items but not with this item id so direct save
+                            existingOrder.addToItems(newItem)
+                        }
+                    }
+                    else {
+                        // Order has no items so direct save
+                        existingOrder.addToItems(newItem)
+                    }
                     try context.save()
                     return true
                 }
@@ -62,13 +74,8 @@ class CoreDataHelper {
             }catch{
                 print("error")
             }
-        }catch{
-            print("error")
+            return true
         }
-        
-        return true
-    }
-    
     
     func storeCDPurchaseOrderRecord(model: Response) -> Bool {
         let purchaseOrdersEntity = NSEntityDescription.entity(forEntityName: "Purchase_orders", in: context)

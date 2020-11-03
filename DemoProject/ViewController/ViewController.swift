@@ -47,10 +47,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(self.responseModel != nil){
             for localUpdateTime in self.responseModel{
                 self.lastUpdateTimeINLocal = localUpdateTime.last_updated
-                var now = NSDate()
-                var formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-                formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            
             }
         }
         
