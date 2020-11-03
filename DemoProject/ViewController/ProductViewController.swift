@@ -13,6 +13,7 @@ class ProductViewController: PopupViewController,FloaterViewDelegate, UITableVie
     //MARK: declare properties and delegates
     var model = Response()
     @IBOutlet weak var tableView: UITableView!
+    var purchaseId:Int?
     
     
     
@@ -37,6 +38,7 @@ class ProductViewController: PopupViewController,FloaterViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row != self.model.items!.count{
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewCell", for: indexPath) as! DetailTableViewCell
+        
             cell.lblItemID.text = "ID:" + String( self.model.items![indexPath.row].id!)
             cell.lblQuantity.text = "Quantity:" + String(self.model.items![indexPath.row].quantity!)
             return cell
@@ -57,7 +59,9 @@ class ProductViewController: PopupViewController,FloaterViewDelegate, UITableVie
     }
     func userDidTapOnItem(at index: Int, with model: String) {
         let typeSelectionVC = self.storyboard!.instantiateViewController(identifier: "AddPurchaseViewController") as! AddPurchaseViewController
+        typeSelectionVC.purchaseId = self.model.id
         typeSelectionVC.headerText = "Add new Item"
+        typeSelectionVC.IsFromDashboard = false
         typeSelectionVC.modalPresentationStyle = .overFullScreen
         typeSelectionVC.shouldDismissViewOnTapOutside = true
         typeSelectionVC.shouldAddFullOverlay = true

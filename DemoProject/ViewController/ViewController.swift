@@ -11,11 +11,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var responseModel = [Response]()
     var viewcontroller = DatabaseHelper()
+    var lastUpdateTimeINLocal: String?
+    var lastUpdateTimeServer: String?
 
     func userDidTapOnItem(at index: Int, with model: String) {
         print(index)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let typeSelectionVC = storyboard.instantiateViewController(identifier: "AddPurchaseViewController") as! AddPurchaseViewController
+        typeSelectionVC.IsFromDashboard = true
+        typeSelectionVC.headerText = "Add purchase"
         typeSelectionVC.modalPresentationStyle = .overFullScreen
         typeSelectionVC.shouldDismissViewOnTapOutside = true
         typeSelectionVC.shouldAddFullOverlay = true
@@ -38,10 +42,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func loadData(){
+        let data = CoreDataHelper.shared.getCDPurchaseOrderRecord()
+        self.responseModel = data! as [Response]
+        if(self.responseModel != nil){
+            for localUpdateTime in self.responseModel{
+                self.lastUpdateTimeINLocal = localUpdateTime.last_updated
+                var now = NSDate()
+                var formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            }
+        }
+        
         viewcontroller.fetchServerData(completion: { [self](resp,err) -> Void in
-            
             if (resp != nil){
-                self.responseModel = resp as! [Response]
+                for lastUpdateTime in self.responseModel {
+                    self.responseModel = resp as! [Response]
+                    self.lastUpdateTimeServer = lastUpdateTime.last_updated
+                }
+            
+             
+                
                 DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -72,13 +93,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomePageTableViewCell", for: indexPath) as! HomePageTableViewCell
         cell.lbl_po_id.text = String(self.responseModel[indexPath.row].id!)
         cell.lbl_lastUpadte.text = self.responseModel[indexPath.row].last_updated
-        cell.lbl_total_items.text = String((self.responseModel[indexPath.row].items?.count)!)
+        //cell.lbl_total_items.text = String((self.responseModel[indexPath.row].items?.count)!)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let navVC = self.storyboard!.instantiateViewController(identifier: "ProductViewController") as! ProductViewController
         navVC.model = self.responseModel[indexPath.row]
+     
         self.present(navVC, animated: true)
 
         

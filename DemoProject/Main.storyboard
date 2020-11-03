@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CoreData" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
         <!--Add Purchase View Controller-->
         <scene sceneID="0br-dS-YeO">
             <objects>
-                <viewController storyboardIdentifier="AddPurchaseViewController" id="gVU-w5-o2k" customClass="AddPurchaseViewController" customModule="CoreData" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPurchaseViewController" id="gVU-w5-o2k" customClass="AddPurchaseViewController" customModule="DemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Slv-wp-h7p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,35 +56,51 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YTb-Bg-gAG">
                                         <rect key="frame" x="0.0" y="0.0" width="331" height="448"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AddPurchaseOrder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ja-N0-SXN">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPy-kz-fDD">
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="89.5"/>
+                                                <color key="backgroundColor" red="0.29373386680000002" green="0.73574681679999998" blue="0.96130555870000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="OrderId" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-jg-5wp">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PurchaseID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-jg-5wp">
                                                 <rect key="frame" x="0.0" y="89.5" width="331" height="89.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="OrderName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DdO-Xp-8mg">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="device_key" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DdO-Xp-8mg">
                                                 <rect key="frame" x="0.0" y="179" width="331" height="90"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="OrderDetail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c8h-he-I1g">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="delivery_note" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c8h-he-I1g">
                                                 <rect key="frame" x="0.0" y="269" width="331" height="89.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tD8-jT-90b">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="9dj-Fo-mSO">
                                                 <rect key="frame" x="0.0" y="358.5" width="331" height="89.5"/>
-                                                <color key="backgroundColor" red="0.29373386680000002" green="0.73574681679999998" blue="0.96130555870000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" title="Save">
-                                                    <color key="titleColor" systemColor="labelColor"/>
-                                                    <color key="titleShadowColor" systemColor="labelColor"/>
-                                                </state>
-                                            </button>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-jT-vNf">
+                                                        <rect key="frame" x="0.0" y="0.0" width="137" height="89.5"/>
+                                                        <color key="backgroundColor" red="0.29373386680000002" green="0.73574681679999998" blue="0.96130555870000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="Save">
+                                                            <color key="titleColor" systemColor="systemIndigoColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="saveData:" destination="gVU-w5-o2k" eventType="touchUpInside" id="Ky8-91-sI5"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcq-tO-Yf1">
+                                                        <rect key="frame" x="137" y="0.0" width="194" height="89.5"/>
+                                                        <color key="backgroundColor" red="0.29373386680000002" green="0.73574681679999998" blue="0.96130555870000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" title="Cancel"/>
+                                                        <connections>
+                                                            <action selector="cancel:" destination="gVU-w5-o2k" eventType="touchUpInside" id="JFK-uR-KNt"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -107,7 +123,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="lblPurchaseHeading" destination="4Ja-N0-SXN" id="HYn-BD-EG8"/>
+                        <outlet property="lblID" destination="eIh-jg-5wp" id="gK7-hb-tYY"/>
+                        <outlet property="lblKey" destination="DdO-Xp-8mg" id="sfZ-eE-jRI"/>
+                        <outlet property="lblPurchaseHeading" destination="YPy-kz-fDD" id="fbG-mG-rj8"/>
+                        <outlet property="lbldata" destination="c8h-he-I1g" id="7Cl-q0-LJN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Igf-ac-pYO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -117,7 +136,7 @@
         <!--Product View Controller-->
         <scene sceneID="RUv-qL-25I">
             <objects>
-                <viewController storyboardIdentifier="ProductViewController" id="00T-EC-nM9" customClass="ProductViewController" customModule="CoreData" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductViewController" id="00T-EC-nM9" customClass="ProductViewController" customModule="DemoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sdX-VD-eFE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,14 +165,14 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

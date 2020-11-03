@@ -50,6 +50,7 @@ class InvoiceDetails: NSObject,Codable{
     var last_updated: String?
 }
 class ReceiptsDetails: NSObject,Codable{
+    var id: Int?
     var details : ItemDetails?
     var received_quantity: Int?
     var created: String?
